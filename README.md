@@ -4,11 +4,11 @@
 
 ## 如何使用：
 
-考虑到兼容性等问题，建议直接使用 Ali 的插件，或者参照 Ali 的插件来编写你自己的插件
+插件目录：`src\plugins`
 
-Windows 下搭建，请参考：[新-基于 Nonebot2 和 go-cqhttp 的机器人搭建](https://yzyyz.top/archives/nb2b1.html)
+Windows 下搭建教程，可参考：[新-基于 Nonebot2 和 go-cqhttp 的机器人搭建](https://yzyyz.top/archives/nb2b1.html)
 
-若要在 Linux 下部署，请参考：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
+若要在 Linux 下部署教程，可参考：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
 
 ## Ali 的功能
 

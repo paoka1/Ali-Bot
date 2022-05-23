@@ -52,7 +52,7 @@ python3 -m nb_cli plugin
      https://geoapi.qweather.com/v2/city/lookup?location=[location]&key=[key]
      ```
 
-     例如，你的 key 是 xxxx，你要查询的城市是 河南
+     例如，key 为 xxxx，要查询的城市是 河南
 
      ```txt
      https://geoapi.qweather.com/v2/city/lookup?location=河南&key=xxxx
