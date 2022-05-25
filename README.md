@@ -6,9 +6,17 @@
 
 插件目录：`src\plugins`
 
-Windows 下搭建教程，可参考：[新-基于 Nonebot2 和 go-cqhttp 的机器人搭建](https://yzyyz.top/archives/nb2b1.html)
+Ali 正处于开发阶段，所以其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
 
-若要在 Linux 下部署教程，可参考：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
+1. [官方插件商店](https://v2.nonebot.dev/store)
+2. [真寻 Bot](https://github.com/HibiKier/zhenxun_bot)
+
+如果想从头开始创建你的 Bot，可参考：
+
+1. Windows 下搭建教程：[新-基于 Nonebot2 和 go-cqhttp 的机器人搭建](https://yzyyz.top/archives/nb2b1.html)
+
+2. 若要在 Linux 下部署教程：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
+
 
 ## Ali 的功能
 
