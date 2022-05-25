@@ -9,9 +9,10 @@
 Ali 正处于开发阶段，所以其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
 
 1. [官方插件商店](https://v2.nonebot.dev/store)
-2. [真寻 Bot](https://github.com/HibiKier/zhenxun_bot)
+2. [Pallas Bot](https://github.com/InvoluteHell/Pallas-Bot)
+3. [真寻 Bot](https://github.com/HibiKier/zhenxun_bot)
 
-如果想从头开始创建你的 Bot，可参考：
+如果想从头开始创建 Bot，可参考：
 
 1. Windows 下搭建教程：[新-基于 Nonebot2 和 go-cqhttp 的机器人搭建](https://yzyyz.top/archives/nb2b1.html)
 
