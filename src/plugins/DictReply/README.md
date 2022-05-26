@@ -8,7 +8,7 @@
 
 1. 向`config.py`里的`reply_dic`添加键值，就可以回复了
 
-2. 例如，想让 Bot 在收到 早安，晚安 时发送 早上好，晚上好 就可以写成下面这样：
+2. 例如，想让 Bot 在收到 早安，晚安 时发送 早上好，晚上好 就可以写成下面这样
 
    ```python
    reply_dic = {'早安': '早上好',
@@ -25,4 +25,3 @@
    reply = on_message(priority=8, block=False)
    ```
 
-   

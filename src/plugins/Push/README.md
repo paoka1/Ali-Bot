@@ -30,7 +30,7 @@ python3 -m nb_cli plugin
 - 哔哩哔哩直播推送
    1. 在`config.py`向`inform_group`添加群聊和对应订阅 up 的 uid（群号是这个字典里的键，关注的 up 写成一个列表作为字典的值）
 
-   2. 例如：123 群订阅了 1 和 2，456 群订阅了 3，就可以写成如下：
+   2. 例如：123 群订阅了 1 和 2，456 群订阅了 3，就可以写成如下
 
       ```python
       inform_group = {'123': ['1', '2'], '456': ['3']}
@@ -64,7 +64,7 @@ python3 -m nb_cli plugin
 
 ### 4.注意事项
 
-在关注的 up 数量较多时，定时插件可能会有如下的一个警告，这可能会影响直播推送的准时性：
+在关注的 up 数量较多时，定时插件可能会有如下的一个警告，这可能会影响直播推送的准时性
 
 ```txt
 Execution of job "push_bili (trigger: interval[0:00:40], next run at: 2022-05-03 11:08:31 CST)" skipped: maximum number of running instances reached (1)
