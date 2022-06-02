@@ -20,11 +20,11 @@
 
 2. 示例
 
-   假如你的脚本放在`/home/xiaoha/mybot/Tools`，nb 根目录路径为`/home/xiaoha/mybot/xiaoha`，cq 根目录路径为`/home/xiaoha/mybot/go-cqhttp`，启动 nb 的命令为`python3 bot.py`，启动 cq 的命令为`./go-cqhttp`，则脚本可配置为
+   假如你的脚本放在`/home/xiaoha/mybot/Tools`，nb 根目录路径为`/home/xiaoha/mybot/xiaoha`，cq 根目录路径为`/home/xiaoha/mybot/go-cqhttp`，运行 nb 的命令为`nohup python3 bot.py &`，运行 cq 的命令为`nohup ./go-cqhttp &`，则脚本可配置为
 
    ```sh
    SCRIPT_PATH="/home/xiaoha/mybot/Tools"
-   NB_PATH="/home/xiaoha/mybot/ali"
+   NB_PATH="/home/xiaoha/mybot/xiaoha"
    CQ_PATH="/home/xiaoha/mybot/go-cqhttp"
    NB_COMMAND="python3 bot.py"
    CQ_COMMAND="./go-cqhttp"
@@ -37,10 +37,12 @@
 
 ### 4.注意
 
-1. 后一次运行产生的`*.out`会覆盖前一次的`*.out`，`Restart.log`会追加在上一次的`Restart.log`文件里（若文件不存在，脚本会自己创建）
-2. 脚本寻找 nb 和 cq 的 PID 是根据其启动命令来寻找的，所以启动 nb 和 cq 的命令应和脚本中的启动命令一致
+1. 脚本重启后的 nb 和 cq 都是可以持久化运行的（即在后台运行，不受登出等因素影响）
+2. 后一次运行产生的`*.out`会覆盖前一次的`*.out`，`Restart.log`会追加在上一次的`Restart.log`文件里（若文件不存在，脚本会自己创建）
+3. 脚本使用`nohup [command] &`来使任务持久化运行，其他方法尚未支持
+4. 脚本寻找 nb 和 cq 的 PID 是根据其启动命令来寻找的，所以启动 nb 和 cq 的命令应和脚本中的启动命令一致
 
 ### 5.关于脚本
 
-1. 脚本写的比较匆忙，以后会慢慢进行优化的
+1. 脚本写的比较匆忙，以后会慢慢进行优化
 2. 由于脚本只在我的环境里测试过，其它环境可能会出现问题，若有问题，欢迎提出
