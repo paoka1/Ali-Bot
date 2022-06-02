@@ -6,6 +6,8 @@
 
 插件目录：`src\plugins`
 
+工具目录：`tools`
+
 Ali 正处于开发阶段，所以其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
 
 1. [官方插件商店](https://v2.nonebot.dev/store)
