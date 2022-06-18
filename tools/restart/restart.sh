@@ -2,7 +2,7 @@
 # Program:
 #	This script will restart Ali-Bot.
 # History:
-#	2022/05/23	paoka1	First release
+#	2022/06/18	paoka1	Second release
 
 PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:~/.local/bin:~/bin
 export PATH
@@ -14,7 +14,7 @@ NB_COMMAND=""
 CQ_COMMAND=""
 
 cd ${SCRIPT_PATH}
-echo "===***** RESTART *****===" >> Restart.log
+echo "======== RESTART ========" >> Restart.log
 echo "[$(date "+%Y-%m-%d %H:%M:%S")] [INFO]    Start to restart Ali-Bot." >> Restart.log
 
 # Find out the PID of the `${NB_COMMAND}`
@@ -35,6 +35,7 @@ echo "[$(date "+%Y-%m-%d %H:%M:%S")] [SUCCESS] The PID of cq is ${cq}." >> Resta
 
 # Try to stop nb
 kill ${nb}
+sleep 1
 
 # If can't stop nb
 nbj=`ps -ef | grep -n "${NB_COMMAND}" | grep -v "grep"  | awk '{print $2}'`
@@ -48,6 +49,7 @@ fi
 
 # Try to stop cq
 kill ${cq}
+sleep 1
 
 # If can't stop cq
 cqj=`ps -ef | grep -n "${CQ_COMMAND}" | grep -v "grep"  | awk '{print $2}'`
