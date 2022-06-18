@@ -14,9 +14,9 @@
 
    向`CQ_PATH`变量添加 cq 的根目录路径
 
-   向`NB_COMMAND`变量添加启动 nb 的命令
+   向`NB_COMMAND`变量添加启动 nb 的命令（在 nb 根目录下的运行命令）
 
-   向`CQ_COMMAND`变量添加启动 cq 的命令
+   向`CQ_COMMAND`变量添加启动 cq 的命令（在 cq 根目录下的运行命令）
 
 2. 示例
 
@@ -28,12 +28,31 @@
    CQ_PATH="/home/xiaoha/mybot/go-cqhttp"
    NB_COMMAND="python3 bot.py"
    CQ_COMMAND="./go-cqhttp"
+   ```
+
+3. 使用 Conda
+
+   如果使用的是 Conda 构建的 nb（Python） 环境，那么可以在`NB_COMMAND`填写 Conda 中 Python 解释器的绝对路径，例如在 Conda 里创建了一个名为`mybot`的 Python 环境，其对应的解释器路径为`/home/xiaoha/miniconda3/envs/mybot/bin/python3`，则`NB_COMMAND`可以写为`/home/xiaoha/miniconda3/envs/mybot/bin/python3 bot.py`
 
 ### 3.日志文件
 
-1. `Restart.log`：记录脚本运行信息，位于脚本同目录
-2. `nb.out`：记录 nb 的输出，位于脚本同目录
-3. `cq.out`：记录 cq 的输出，位于脚本同目录
+1. `nb.out`：记录 nb 的输出，位于脚本同目录
+
+2. `cq.out`：记录 cq 的输出，位于脚本同目录
+
+3. `Restart.log`：记录脚本运行信息，位于脚本同目录，样式如下
+
+   ```txt
+   ======== RESTART ========
+   [2022-06-18 17:29:28] [INFO]    Start to restart Ali-Bot.
+   [2022-06-18 17:29:28] [SUCCESS] The PID of nb is 884.
+   [2022-06-18 17:29:28] [SUCCESS] The PID of cq is 885.
+   [2022-06-18 17:29:29] [SUCCESS] Success to stop nb.
+   [2022-06-18 17:29:30] [SUCCESS] Success to stop cq.
+   [2022-06-18 17:29:30] [SUCCESS] Success to restart nb, the PID of nb is 925.
+   [2022-06-18 17:29:30] [SUCCESS] Success to restart cq, the PID of cq is 932.
+   [2022-06-18 17:29:30] [SUCCESS] Success to restart Ali-Bot.
+   ```
 
 ### 4.注意
 
