@@ -22,7 +22,7 @@ python3 -m nb_cli plugin
 # nonebot-plugin-apscheduler
 ```
 
-安装完后需要进行配置：请参考官方的 [配置方法指南](https://v2.nonebot.dev/docs/advanced/scheduler)（如果无效，可尝试把添加到`.env`文件的内容也添加到`.env.dev`文件中去，如果还是出现错误，请参考本 Bot 的`bot.py`文件来配置你的`bot.py`）。或者参考本 Bot 的配置文件内容文件：`.env.dev`和`bot.py`
+安装完后需要进行配置：请参考官方的 [配置方法指南](https://v2.nonebot.dev/docs/advanced/scheduler)（如果无效，可尝试把添加到`.env`文件的内容也添加到`.env.dev`文件中去，如果还是出现错误，请参考本 Bot 的`bot.py`文件来配置你的`bot.py`）。
 
 ### 3.使用教程
 
@@ -66,10 +66,10 @@ python3 -m nb_cli plugin
      @scheduler.scheduled_job('cron', hour=7, minute=0)
      ```
 
-     在`__init__.py`中改变下面代码数字的值即可改变单次推送之间的间隔（单位：秒）
+     在`__init__.py`中改变下面代码数字的值即可改变单次推送之间的间隔（单位：秒，在 48 行左右）
 
      ```python
-     await asyncio.sleep(20)
+     await asyncio.sleep(2)
      ```
 
   6. 改变推送文字（可选）

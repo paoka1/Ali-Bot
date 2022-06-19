@@ -23,7 +23,7 @@ python3 -m nb_cli plugin
 # nonebot-plugin-apscheduler
 ```
 
-安装完后需要进行配置：请参考官方的 [配置方法指南](https://v2.nonebot.dev/docs/advanced/scheduler)（如果无效，可尝试把添加到`.env`文件的内容也添加到`.env.dev`文件中去，如果还是出现错误，请参考本 Bot 的`bot.py`文件来配置你的`bot.py`）。或者参考本 Bot 的配置文件内容文件：`.env.dev`和`bot.py`
+安装完后需要进行配置：请参考官方的 [配置方法指南](https://v2.nonebot.dev/docs/advanced/scheduler)（如果无效，可尝试把添加到`.env`文件的内容也添加到`.env.dev`文件中去，如果还是出现错误，请参考本 Bot 的`bot.py`文件来配置你的`bot.py`）。
 
 ### 3.使用教程
 
@@ -36,20 +36,20 @@ python3 -m nb_cli plugin
       inform_group = {'123': ['1', '2'], '456': ['3']}
       ```
    
-   3. 改变`__init__.py`中以下的代码中的数值可改变向哔哩哔哩服务器请求间隔（请不要将间隔设置太小，有几率会请求失败）
+   3. 改变`__init__.py`中以下的代码中的数值可改变向哔哩哔哩服务器请求间隔
    
       ```python
-      # 设置为 40 秒（整体请求间隔）
-      @scheduler.scheduled_job('interval', seconds=40)
-      # 设置为 0.5 秒（单个请求间隔，在 35 行左右）
-      await asyncio.sleep(0.5)
+      # 设置为 40 秒（整体请求间隔，在 29 行左右）
+      @scheduler.scheduled_job('interval', seconds=38)
+      # 设置为 1 秒（单个请求间隔，在 38 行左右）
+      await asyncio.sleep(1)
       ```
    
    4. 改变`__init__.py`中以下代码中的数值可改变单次推送间隔
    
       ```python
-      # 在 60 行左右
-      await asyncio.sleep(3)
+      # 在 64 行左右
+      await asyncio.sleep(1)
       ```
    
    5. 改变以下代码内容可改变推送时的文字内容
@@ -70,7 +70,7 @@ python3 -m nb_cli plugin
 Execution of job "push_bili (trigger: interval[0:00:40], next run at: 2022-05-03 11:08:31 CST)" skipped: maximum number of running instances reached (1)
 ```
 
-这时可以通过增加整体的请求间隔（无上限），或者减小单个请求间隔（最小值为 0）来解决
+这时可以通过增加整体的请求间隔（在 29 行左右，无上限），或者减小单个请求间隔（在 38 行左右，最小值为 0）来解决
 
 ### 5.ToDo List
 
