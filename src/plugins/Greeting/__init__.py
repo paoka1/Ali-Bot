@@ -16,7 +16,7 @@ plugin_config = Config(**global_config.dict())
 async def morning_push():
     for group in plugin_config.inform_group:
         for location in plugin_config.inform_group[group]:
-            weather_status = get_weather(location, plugin_config.key)
+            weather_status = await get_weather(location, plugin_config.key)
 
             # 构造消息
             msg: Message = (MessageSegment.text('早上好！')
@@ -37,4 +37,4 @@ async def morning_push():
                 'message': msg,
                 'group_id': int(group)
             })
-            await asyncio.sleep(20)
+            await asyncio.sleep(2)

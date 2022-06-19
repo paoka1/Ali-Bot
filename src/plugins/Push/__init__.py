@@ -1,4 +1,5 @@
 import asyncio
+# import time
 from nonebot import require, get_bot, get_driver
 from nonebot.adapters.cqhttp import MessageSegment, Message
 
@@ -27,12 +28,15 @@ uid_list = list(set(uid_list))
 # 设置定时任务，间隔 40 秒
 @scheduler.scheduled_job('interval', seconds=40)
 async def push_bili():
+    # print("\n\n" + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ": TOTAL_START\n\n")
     global bili_status
 
-    # 获取直播状态
     for uid in uid_list:
-        bili_info = bili_api.bli_status(int(uid))
-        await asyncio.sleep(0.5)
+        # print("\n\n" + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + ": GET_START\n\n")
+        # 获取直播状态
+        bili_info = await bili_api.bli_status(int(uid))
+        await asyncio.sleep(1)
+        # 避免 bot 启动时正在直播，又推送了，默认 True
         pre: bool = bili_status.get(uid, True)
         now: bool = bili_info.room.liveStatus == 1
         bili_status[uid] = now
@@ -57,4 +61,4 @@ async def push_bili():
                     'message': msg,
                     'group_id': int(group)
                 })
-                await asyncio.sleep(3)
+                await asyncio.sleep(1)
