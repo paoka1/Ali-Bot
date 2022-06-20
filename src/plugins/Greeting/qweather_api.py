@@ -58,7 +58,7 @@ async def get_pos(location: str, key: str) -> dict:
 
 
 # qweather api 接口
-async def get_weather(location: str, key: str):
+async def get_weather(location: str, key: str) -> WeatherInfo:
     today = get_today()
     pos = await get_pos(location, key)
     weather = await get_weather_info(location, key)
