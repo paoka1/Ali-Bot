@@ -39,16 +39,16 @@ python3 -m nb_cli plugin
    3. 改变`__init__.py`中以下的代码中的数值可改变向哔哩哔哩服务器请求间隔
    
       ```python
-      # 设置为 40 秒（整体请求间隔，在 29 行左右）
+      # 设置为 40 秒（整体请求间隔，在 27 行左右）
       @scheduler.scheduled_job('interval', seconds=38)
-      # 设置为 1 秒（单个请求间隔，在 38 行左右）
+      # 设置为 1 秒（单个请求间隔，在 37 行左右）
       await asyncio.sleep(1)
       ```
    
    4. 改变`__init__.py`中以下代码中的数值可改变单次推送间隔
    
       ```python
-      # 在 64 行左右
+      # 在 63 行左右
       await asyncio.sleep(1)
       ```
    

@@ -1,6 +1,9 @@
+import asyncio
+import httpcore
 import httpx
 import random
 import json
+import time
 
 
 class LiveRoom:
@@ -18,14 +21,18 @@ class LiveRoom:
 
 class User:
     uid: int
+    code: int
     name: str
     face: str
+    message: str
     room: LiveRoom
 
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: dict, code: int, message: str) -> None:
+        self.code = code
         self.uid = data['mid']
         self.name = data['name']
         self.face = data['face']
+        self.message = message
         self.room = LiveRoom(data['live_room'])
 
 
@@ -53,13 +60,43 @@ def get_header() -> dict:
 async def get_status(uid: int) -> dict:
     async with httpx.AsyncClient() as client:
         url = "https://api.bilibili.com/x/space/acc/info?mid={0}&jsonp=jsonp".format(uid)
-        r = await client.get(url, headers=get_header())
-        r.encoding = "utf-8"
+        try:
+            r = await client.get(url, headers=get_header())
+            r.encoding = "utf-8"
+        # 捕获因网络原因造成的 timeout 异常
+        except (asyncio.exceptions.CancelledError, TimeoutError, httpcore.ConnectTimeout, httpx.ConnectTimeout):
+            print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
+                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(plugins/Push/bili_api.py)\033[0m | 请求 {url} 时出错，"
+                  f"这可能是因为 API 失效或者网络不佳而造成的")
+            none_data = {"data": {"mid": None,
+                                  "name": None,
+                                  "face": None,
+                                  "live_room": {"liveStatus": None, "url": None, 'title': None, "cover": None}},
+                         "code": -1000,
+                         "message": "0"}
+            return none_data
         return json.loads(r.text)
 
 
 # bili_api 程序接口
 async def bli_status(uid: int) -> User:
     resp = await get_status(uid)
-    bli_info = User(resp['data'])
+    try:
+        bli_info = User(resp['data'], resp['code'], resp['message'])
+    # 捕获 API 返回数据解析时发生的异常
+    except TypeError:
+        print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033[1;31mERROR\033[0m] "
+              f"\033[4;36m哔哩哔哩直播推送(plugins/Push/bili_api.py)\033[0m | 解析时出错，这可能是因为 API "
+              f"返回数据不正确而导致的，错误代码：{resp['code']}，错误消息：{resp['message']}")
+        none_data = {"data": {"mid": None,
+                              "name": None,
+                              "face": None,
+                              "live_room": {"liveStatus": None, "url": None, 'title': None, "cover": None}},
+                     "code": -2000,
+                     "message": "0"}
+        bli_info = User(none_data['data'], none_data['code'], none_data['message'])
     return bli_info
+
+if __name__ == '__main__':
+    res = asyncio.run(bli_status(53456))
+    print(res.room.liveStatus)

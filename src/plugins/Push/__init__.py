@@ -1,4 +1,3 @@
-import asyncio
 from nonebot import require, get_bot, get_driver
 from nonebot.adapters.cqhttp import MessageSegment, Message
 
@@ -32,6 +31,9 @@ async def push_bili():
     for uid in uid_list:
         # 获取直播状态
         bili_info = await bili_api.bli_status(int(uid))
+        # 如果获取到的信息有问题，就直接取消本次查询（由网络原因或数据解析时发生错误导致）
+        if bili_info.code != 0:
+            return
         await asyncio.sleep(1)
         # 避免 bot 启动时正在直播，又推送了，默认 True
         pre: bool = bili_status.get(uid, True)
