@@ -62,20 +62,19 @@ async def get_status(uid: int) -> dict:
         url = "https://api.bilibili.com/x/space/acc/info?mid={0}&jsonp=jsonp".format(uid)
         try:
             r = await client.get(url, headers=get_header())
-            r.encoding = "utf-8"
         # 捕获因网络原因造成的 timeout 异常
         except (asyncio.exceptions.CancelledError, TimeoutError, httpcore.ConnectTimeout, httpx.ConnectTimeout):
             print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
-                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(plugins/Push/bili_api.py)\033[0m | 请求 {url} 时出错，"
+                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(Push)\033[0m | 请求 {url} 时出错，"
                   f"这可能是因为 API 失效或者网络不佳而造成的")
-            none_data = {"data": {"mid": None,
-                                  "name": None,
-                                  "face": None,
-                                  "live_room": {"liveStatus": None, "url": None, 'title': None, "cover": None}},
+            none_data = {"data": {"mid": 0,
+                                  "name": '',
+                                  "face": '',
+                                  "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
                          "code": -1000,
-                         "message": "0"}
+                         "message": ""}
             return none_data
-        return json.loads(r.text)
+        return json.loads(r.text, strict=False)
 
 
 # bili_api 程序接口
@@ -84,19 +83,20 @@ async def bli_status(uid: int) -> User:
     try:
         bli_info = User(resp['data'], resp['code'], resp['message'])
     # 捕获 API 返回数据解析时发生的异常
-    except TypeError:
+    except (TypeError, KeyError):
         print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033[1;31mERROR\033[0m] "
-              f"\033[4;36m哔哩哔哩直播推送(plugins/Push/bili_api.py)\033[0m | 解析时出错，这可能是因为 API "
+              f"\033[4;36m哔哩哔哩直播推送(Push)\033[0m | 解析时出错，这可能是因为 API "
               f"返回数据不正确而导致的，错误代码：{resp['code']}，错误消息：{resp['message']}")
-        none_data = {"data": {"mid": None,
-                              "name": None,
-                              "face": None,
-                              "live_room": {"liveStatus": None, "url": None, 'title': None, "cover": None}},
+        none_data = {"data": {"mid": 0,
+                              "name": '',
+                              "face": '',
+                              "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
                      "code": -2000,
-                     "message": "0"}
+                     "message": ""}
         bli_info = User(none_data['data'], none_data['code'], none_data['message'])
     return bli_info
 
 if __name__ == '__main__':
     res = asyncio.run(bli_status(53456))
-    print(res.room.liveStatus)
+    print(res.__dict__)
+    print(res.room.__dict__)
