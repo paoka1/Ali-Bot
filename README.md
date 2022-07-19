@@ -4,22 +4,29 @@
 
 ## 如何使用：
 
-插件目录：`src\plugins`
+1. 如果你想使用阿狸的插件或工具：
 
-工具目录：`tools`
+   插件目录`src\plugins`，工具目录`tools`，直接使用即可，使用说明见每个插件和工具目录下的`README.md`
 
-Ali 正处于开发阶段，所以其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
+2. 如果你想配置一个阿狸：
 
-1. [官方插件商店](https://v2.nonebot.dev/store)
-2. [Pallas Bot](https://github.com/InvoluteHell/Pallas-Bot)
-3. [真寻 Bot](https://github.com/HibiKier/zhenxun_bot)
+   1. 安装`requirements.txt`，配置`.env.dev`
+   2. 按照每个插件或工具下的`README.md`进行配置
+   3. 安装`go-cqhttp`并进行配置
 
-如果想从头开始创建 Bot，可参考：
+   或者从头开始创建一个 Bot，直接复制阿狸的插件或工具并进行配置，如果在配置过程中有什么问题，可以联系我
 
-1. Windows 下搭建教程：[新-基于 Nonebot2 和 go-cqhttp 的机器人搭建](https://yzyyz.top/archives/nb2b1.html)
+3. Ali 正处于开发阶段，其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
 
-2. 若要在 Linux 下部署教程：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
+   1. [官方插件商店](https://v2.nonebot.dev/store)
+   1. [Pallas Bot](https://github.com/InvoluteHell/Pallas-Bot)
+   1. [真寻 Bot](https://github.com/HibiKier/zhenxun_bot)
 
+4. 如果想从头开始创建 Bot，或者配置时出现问题，可参考：
+
+   1. Windows 下搭建教程：[新-基于 Nonebot2 和 go-cqhttp 的机器人搭建](https://yzyyz.top/archives/nb2b1.html)
+
+   1. 若要在 Linux 下部署教程：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
 
 ## Ali 的功能
 
