@@ -1,5 +1,7 @@
 import json
 import httpx
+import asyncio
+import httpcore
 from datetime import date
 
 
@@ -16,14 +18,16 @@ class Today:
 
 class WeatherInfo:
     pos: str
+    code: int
     today: Today
     tempMax: str
     tempMin: str
     textDay: str
     textNight: str
 
-    def __init__(self, data: dict, today: dict, pos: str) -> None:
+    def __init__(self, data: dict, code: int, today: dict, pos: str) -> None:
         self.pos = pos
+        self.code = code
         self.today = Today(today)
         self.tempMax = data['tempMax']
         self.tempMin = data['tempMin']
@@ -42,7 +46,7 @@ def get_today() -> dict:
 # 获取天气信息
 async def get_weather_info(location: str, key: str) -> dict:
     async with httpx.AsyncClient() as client:
-        url = 'https://devapi.qweather.com/v7/weather/3d?key={0}&location={1}'.format(key, location)
+        url = "https://devapi.qweather.com/v7/weather/3d?key={0}&location={1}".format(key, location)
         r = await client.get(url)
         r.encoding = 'utf-8'
         return json.loads(r.text)
@@ -51,7 +55,7 @@ async def get_weather_info(location: str, key: str) -> dict:
 # 获取城市等信息
 async def get_pos(location: str, key: str) -> dict:
     async with httpx.AsyncClient() as client:
-        url = 'https://geoapi.qweather.com/v2/city/lookup?key={0}&location={1}'.format(key, location)
+        url = "https://geoapi.qweather.com/v2/city/lookup?key={0}&location={1}".format(key, location)
         r = await client.get(url)
         r.encoding = 'utf-8'
         return json.loads(r.text)
@@ -60,7 +64,23 @@ async def get_pos(location: str, key: str) -> dict:
 # qweather api 接口
 async def get_weather(location: str, key: str) -> WeatherInfo:
     today = get_today()
-    pos = await get_pos(location, key)
-    weather = await get_weather_info(location, key)
-    weather_status = WeatherInfo(weather['daily'][0], today, pos['location'][0]['name'])
+    try:
+        pos = await get_pos(location, key)
+        weather = await get_weather_info(location, key)
+    except (asyncio.exceptions.CancelledError, TimeoutError, httpcore.ConnectTimeout, httpx.ConnectTimeout):
+        none_data = {"pos": '',
+                     "code": -100,
+                     "today": {"day": '', "month": '', "week_day": ''},
+                     "daily": {"tempMax": '', "tempMin": '', "textDay": '', "textNight": ''}}
+        weather_status = WeatherInfo(none_data["daily"], none_data["code"], none_data["today"], none_data['pos'])
+        return weather_status
+    weather_status = WeatherInfo(weather['daily'][0], int(weather['code']), today, pos['location'][0]['name'])
     return weather_status
+
+
+if __name__ == '__main__':
+    # 在这里填上你的 key
+    qw_key = ''
+    res = asyncio.run(get_weather('101190101', qw_key))
+    print(res.__dict__)
+    print(res.today.__dict__)
