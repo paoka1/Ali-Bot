@@ -18,13 +18,13 @@ bili_status = {}
 inform_to_group = []
 
 # 加载关注列表
-for item in plugin_config.inform_group:
-    uid_list.extend(plugin_config.inform_group[item])
+for item in plugin_config.bili_live_inform_group:
+    uid_list.extend(plugin_config.bili_live_inform_group[item])
 uid_list = list(set(uid_list))
 
 
 # 设置定时任务，间隔 40 秒
-@scheduler.scheduled_job('interval', seconds=40)
+@scheduler.scheduled_job('interval', seconds=plugin_config.bili_live_time_all)
 async def push_bili():
     global bili_status
 
@@ -34,7 +34,7 @@ async def push_bili():
         # 如果获取到的信息有问题，就直接取消本次查询（由网络原因或数据解析时发生错误导致）
         if bili_info.code != 0:
             return
-        await asyncio.sleep(1)
+        await asyncio.sleep(plugin_config.bili_live_time_get)
         # 避免 bot 启动时正在直播，又推送了，默认 True
         pre: bool = bili_status.get(uid, True)
         now: bool = bili_info.room.liveStatus == 1
@@ -50,8 +50,8 @@ async def push_bili():
             inform_to_group.clear()
 
             # 查找出要推送的群聊
-            for group in plugin_config.inform_group:
-                if uid in plugin_config.inform_group[group]:
+            for group in plugin_config.bili_live_inform_group:
+                if uid in plugin_config.bili_live_inform_group[group]:
                     inform_to_group.append(group)
 
             # 开始推送
@@ -60,4 +60,4 @@ async def push_bili():
                     'message': msg,
                     'group_id': int(group)
                 })
-                await asyncio.sleep(1)
+                await asyncio.sleep(plugin_config.bili_live_time_send)

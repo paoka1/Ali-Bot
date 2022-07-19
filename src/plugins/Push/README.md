@@ -28,31 +28,32 @@ python3 -m nb_cli plugin
 ### 3.使用教程
 
 - 哔哩哔哩直播推送
-   1. 在`config.py`向`inform_group`添加群聊和对应订阅 up 的 uid（群号是这个字典里的键，关注的 up 写成一个列表作为字典的值）
+   1. 在`config.py`向`bili_live_inform_group`添加群聊和对应订阅 up 的 uid（群号是这个字典里的键，关注的 up 写成一个列表作为字典的值）
 
    2. 例如：123 群订阅了 1 和 2，456 群订阅了 3，就可以写成如下
 
       ```python
-      inform_group = {'123': ['1', '2'], '456': ['3']}
+      # 订阅群聊和阿婆主
+      bili_live_inform_group = {'123': ['1', '2'], '456': ['3']}
       ```
    
-   3. 改变`__init__.py`中以下的代码中的数值可改变向哔哩哔哩服务器请求间隔
+   3. 改变`config.py`中以下的代码中的数值可改变向哔哩哔哩服务器请求间隔（可选）
    
       ```python
-      # 设置为 40 秒（整体请求间隔，在 27 行左右）
-      @scheduler.scheduled_job('interval', seconds=38)
-      # 设置为 1 秒（单个请求间隔，在 37 行左右）
-      await asyncio.sleep(1)
+      # 请求直播状态整体间隔时间
+      bili_live_time_all = 40
+      # 请求直播状态整体单次时间
+      bili_live_time_get = 1
       ```
    
-   4. 改变`__init__.py`中以下代码中的数值可改变单次推送间隔
+   4. 改变`config.py`中以下代码中的数值可改变单次推送间隔（可选）
    
       ```python
-      # 在 63 行左右
-      await asyncio.sleep(1)
+      # 发送消息后的间隔时间
+      bili_live_time_send = 1
       ```
    
-   5. 改变以下代码内容可改变推送时的文字内容
+   5. 在`__init__.py`改变以下代码内容可改变推送时的文字内容（可选）
    
       ```python
       msg: Message = MessageSegment.text('阿婆主：' + bili_info.name) \
@@ -70,7 +71,7 @@ python3 -m nb_cli plugin
 Execution of job "push_bili (trigger: interval[0:00:40], next run at: 2022-05-03 11:08:31 CST)" skipped: maximum number of running instances reached (1)
 ```
 
-这时可以通过增加整体的请求间隔（在 29 行左右，无上限），或者减小单个请求间隔（在 38 行左右，最小值为 0）来解决
+这时可以通过增加整体的请求间隔（`bili_live_time_all`），或者减小单个请求间隔（`bili_live_time_get`）来解决
 
 ### 5.ToDo List
 
