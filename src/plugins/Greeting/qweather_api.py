@@ -67,6 +67,7 @@ async def get_weather(location: str, key: str) -> WeatherInfo:
     try:
         pos = await get_pos(location, key)
         weather = await get_weather_info(location, key)
+    # 捕获因网络原因造成的 timeout 异常
     except (asyncio.exceptions.CancelledError, TimeoutError, httpcore.ConnectTimeout, httpx.ConnectTimeout):
         none_data = {"pos": '',
                      "code": -100,
