@@ -2,7 +2,9 @@
 
 ### 1.使用脚本
 
-**脚本功能：**重启、运行、停止 Bot，按日期管理日志
+**脚本功能：**
+
+重启、运行、停止 Bot，按日期管理日志
 
 **使用命令：**
 
@@ -108,6 +110,26 @@
 │   └── nb_2022_07_24.out
 ├── log_restart.log
 └── restart.sh
+```
+
+其中`cq_logs`下为 cq 的输出，`nb_logs`下为 nb 的输出，`log_restart.log`：记录脚本运行信息（记录运行、重启、停止以及删除 Bot 日志时的日志），样式如下：
+
+```log
+======== RESTART ========
+[2022-07-24 18:13:20] [INFO]    Start to stop Ali-Bot.
+[2022-07-24 18:13:21] [SUCCESS] Success to stop nb.
+[2022-07-24 18:13:22] [SUCCESS] Success to stop cq.
+[2022-07-24 18:13:22] [INFO]    Start to start Ali-Bot.
+[2022-07-24 18:13:23] [SUCCESS] Success to start nb, the PID of nb is 8171.
+[2022-07-24 18:13:24] [SUCCESS] Success to start cq, the PID of cq is 8179.
+[2022-07-24 18:13:24] [SUCCESS] Success to restart Ali-bot.
+
+
+======== STOP ========
+[2022-07-24 18:45:53] [INFO]    Start to stop Ali-Bot.
+[2022-07-24 18:45:54] [SUCCESS] Success to stop nb.
+[2022-07-24 18:45:55] [SUCCESS] Success to stop cq.
+[2022-07-24 18:45:55] [SUCCESS] Success to stop Ali-bot.
 ```
 
 脚本的日志会追加在`log_restart.log`，nb、cq 输出会按日期放在 nb_logs 和 cq_logs 下，同一天的会追加到同一个文件内，不同日期的会记录在新的文件内，会按照配置删除日志文件
