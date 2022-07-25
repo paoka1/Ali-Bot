@@ -1,3 +1,4 @@
+import random
 from nonebot import get_driver
 from nonebot.adapters.cqhttp import Event
 from nonebot.plugin import on_message
@@ -21,6 +22,7 @@ async def reply_handle(event: Event):
     # 在回复字典找到了 key 就回复
     try:
         reply_msg = reply_dic[user_msg]
+        reply_msg = random.choice(reply_msg)
         await reply.finish(reply_msg)
     # 没找到 key 就当什么都没有发生
     except KeyError:
