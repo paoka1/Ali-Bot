@@ -62,6 +62,7 @@ async def get_status(uid: int) -> dict:
         url = "https://api.bilibili.com/x/space/acc/info?mid={0}&jsonp=jsonp".format(uid)
         try:
             r = await client.get(url, headers=get_header())
+            r.encoding = 'utf-8'
         # 捕获因网络原因造成的 timeout 异常
         except (asyncio.exceptions.CancelledError, TimeoutError, httpcore.ConnectTimeout, httpx.ConnectTimeout):
             print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
@@ -74,7 +75,21 @@ async def get_status(uid: int) -> dict:
                          "code": -1000,
                          "message": ""}
             return none_data
-        return json.loads(r.text, strict=False)
+        try:
+            bili_data = json.loads(r.text)
+        # 捕获因解析 json 造成的 json.decoder.JSONDecodeError 异常
+        except json.decoder.JSONDecodeError:
+            print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
+                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(Push)\033[0m | 解析 json 数据时出错，"
+                  f"这可能是因为接收到的数据不正确而造成的")
+            none_data = {"data": {"mid": 0,
+                                  "name": '',
+                                  "face": '',
+                                  "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
+                         "code": -2000,
+                         "message": ""}
+            return none_data
+        return bili_data
 
 
 # bili_api 程序接口
@@ -91,7 +106,7 @@ async def bli_status(uid: int) -> User:
                               "name": '',
                               "face": '',
                               "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
-                     "code": -2000,
+                     "code": -3000,
                      "message": ""}
         bli_info = User(none_data['data'], none_data['code'], none_data['message'])
     return bli_info
