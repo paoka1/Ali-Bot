@@ -77,7 +77,7 @@ async def get_status(uid: int) -> dict:
             return none_data
         try:
             bili_data = json.loads(r.text)
-        # 捕获因解析 json 造成的 json.decoder.JSONDecodeError 异常
+        # 捕获因 json 解析失败造成的 json.decoder.JSONDecodeError 异常
         except json.decoder.JSONDecodeError:
             print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
                   f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(Push)\033[0m | 解析 json 数据时出错，"
