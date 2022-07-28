@@ -14,7 +14,7 @@ plugin_config = Config(**global_config.dict())
 
 @scheduler.scheduled_job('cron', hour=plugin_config.weather_push_time['hour'],
                          minute=plugin_config.weather_push_time['minute'])
-async def morning_push():
+async def weather_push():
     for group in plugin_config.weather_inform_group:
         for location in plugin_config.weather_inform_group[group]:
             try_count = 1

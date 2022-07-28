@@ -107,7 +107,7 @@ python3 -m nb_cli plugin
 
 8. 测试天气获取功能（可选）
 
-   在`qweather_api.py`里第 83 行填上你的 key，就可以进行测试了
+   在`qweather_api.py`里第 84 行填上你的 key，就可以进行测试了
 
    ```python
    # 在这里填上你的 key
