@@ -44,9 +44,10 @@
 
 - [x] [关键句](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/DictReply)，[关键词消息回复](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/KeyReply)
 - [x] [回复图片类型的消息](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/SendImage)
-- [x] [哔哩哔哩直播推送](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/Push)
+- [x] [哔哩哔哩直播推送](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/BiliPush)
 - [x] [成为复读机（完善中）](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/Repeater)
 - [x] [每天问好功能（完善中）](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/Greeting)
+- [ ] 哔哩哔哩动态推送
 - [ ] CVE 更新推送
 - [ ] 自主从聊天中学习
 - [ ] 统治人类（bushi

@@ -66,7 +66,7 @@ async def get_status(uid: int) -> dict:
         # 捕获因网络原因造成的 timeout 异常
         except (asyncio.exceptions.CancelledError, TimeoutError, httpcore.ConnectTimeout, httpx.ConnectTimeout):
             print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
-                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(Push)\033[0m | 请求 {url} 时出错，"
+                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(BiliPush)\033[0m | 请求 {url} 时出错，"
                   f"这可能是因为 API 失效或者网络不佳而造成的")
             none_data = {"data": {"mid": 0,
                                   "name": '',
@@ -80,7 +80,7 @@ async def get_status(uid: int) -> dict:
         # 捕获因 json 解析失败造成的 json.decoder.JSONDecodeError 异常
         except json.decoder.JSONDecodeError:
             print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
-                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(Push)\033[0m | 解析 json 数据时出错，"
+                  f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(BiliPush)\033[0m | 解析 json 数据时出错，"
                   f"这可能是因为接收到的数据不正确而造成的")
             none_data = {"data": {"mid": 0,
                                   "name": '',
@@ -100,7 +100,7 @@ async def bli_status(uid: int) -> User:
     # 捕获 API 返回数据解析时发生的异常
     except (TypeError, KeyError):
         print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033[1;31mERROR\033[0m] "
-              f"\033[4;36m哔哩哔哩直播推送(Push)\033[0m | 解析时出错，这可能是因为 API "
+              f"\033[4;36m哔哩哔哩直播推送(BiliPush)\033[0m | 解析时出错，这可能是因为 API "
               f"返回数据不正确而导致的，错误代码：{resp['code']}，错误消息：{resp['message']}")
         none_data = {"data": {"mid": 0,
                               "name": '',
