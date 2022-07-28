@@ -23,7 +23,7 @@ python3 -m nb_cli plugin
 # nonebot-plugin-apscheduler
 ```
 
-安装完后需要进行配置：请参考官方的 [配置方法指南](https://v2.nonebot.dev/docs/advanced/scheduler)（如果无效，可尝试把添加到`.env`文件的内容也添加到`.env.dev`文件中去，如果还是出现错误，请参考本 Bot 的`bot.py`文件来配置你的`bot.py`）
+安装完后需要进行配置：可以参考官方的 [配置方法指南](https://v2.nonebot.dev/docs/advanced/scheduler)
 
 ### 3.使用教程
 

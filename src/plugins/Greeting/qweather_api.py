@@ -35,7 +35,7 @@ class WeatherInfo:
         self.textNight = data['textNight']
 
 
-# 获取今天的月份，天数和星期几
+# get_today 获取今天的月份，天数和星期几
 def get_today() -> dict:
     today = date.today()
     week_day_list = ['一', '二', '三', '四', '五', '六', '日']
@@ -43,7 +43,7 @@ def get_today() -> dict:
     return today_info
 
 
-# 获取天气信息
+# get_weather_info 获取天气信息
 async def get_weather_info(location: str, key: str) -> dict:
     async with httpx.AsyncClient() as client:
         url = "https://devapi.qweather.com/v7/weather/3d?key={0}&location={1}".format(key, location)
@@ -52,7 +52,7 @@ async def get_weather_info(location: str, key: str) -> dict:
         return json.loads(r.text)
 
 
-# 获取城市等信息
+# get_pos 获取城市等信息
 async def get_pos(location: str, key: str) -> dict:
     async with httpx.AsyncClient() as client:
         url = "https://geoapi.qweather.com/v2/city/lookup?key={0}&location={1}".format(key, location)
@@ -61,7 +61,7 @@ async def get_pos(location: str, key: str) -> dict:
         return json.loads(r.text)
 
 
-# qweather api 接口
+# qweather_api 接口
 async def get_weather(location: str, key: str) -> WeatherInfo:
     today = get_today()
     try:

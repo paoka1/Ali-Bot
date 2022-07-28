@@ -36,7 +36,7 @@ class User:
         self.room = LiveRoom(data['live_room'])
 
 
-# 随机请求头
+# get_header 获取随机请求头
 def get_header() -> dict:
     user_agent_list = [
         'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95',
@@ -56,7 +56,7 @@ def get_header() -> dict:
     return header
 
 
-# get_status 用于获取状态报文
+# get_live_status 用于获取直播状态
 async def get_live_status(uid: int) -> dict:
     async with httpx.AsyncClient() as client:
         url = "https://api.bilibili.com/x/space/acc/info?mid={0}&jsonp=jsonp".format(uid)
@@ -68,48 +68,49 @@ async def get_live_status(uid: int) -> dict:
             print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
                   f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(BiliPush)\033[0m | 请求 {url} 时出错，"
                   f"这可能是因为 API 失效或者网络不佳而造成的")
-            none_data = {"data": {"mid": 0,
-                                  "name": '',
-                                  "face": '',
-                                  "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
-                         "code": -1000,
-                         "message": ""}
-            return none_data
+            live_none_data = {"data": {"mid": 0,
+                                       "name": '',
+                                       "face": '',
+                                       "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
+                              "code": -1000,
+                              "message": ""}
+            return live_none_data
         try:
-            bili_data = json.loads(r.text)
+            bli_live_data = json.loads(r.text)
         # 捕获因 json 解析失败造成的 json.decoder.JSONDecodeError 异常
         except json.decoder.JSONDecodeError:
             print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033["
                   f"1;31mERROR\033[0m] \033[4;36m哔哩哔哩直播推送(BiliPush)\033[0m | 解析 json 数据时出错，"
                   f"这可能是因为接收到的数据不正确而造成的")
-            none_data = {"data": {"mid": 0,
-                                  "name": '',
-                                  "face": '',
-                                  "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
-                         "code": -2000,
-                         "message": ""}
-            return none_data
-        return bili_data
+            live_none_data = {"data": {"mid": 0,
+                                       "name": '',
+                                       "face": '',
+                                       "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
+                              "code": -2000,
+                              "message": ""}
+            return live_none_data
+        return bli_live_data
 
 
-# bili_api 程序接口
+# bili_live_api 接口
 async def bli_live_status(uid: int) -> User:
     resp = await get_live_status(uid)
     try:
-        bli_info = User(resp['data'], resp['code'], resp['message'])
+        bli_live_info = User(resp['data'], resp['code'], resp['message'])
     # 捕获 API 返回数据解析时发生的异常
     except (TypeError, KeyError):
         print(f"\033[32m{time.strftime('%m-%d %H:%M:%S', time.localtime(time.time()))}\033[0m [\033[1;31mERROR\033[0m] "
               f"\033[4;36m哔哩哔哩直播推送(BiliPush)\033[0m | 解析时出错，这可能是因为 API "
               f"返回数据不正确而导致的，错误代码：{resp['code']}，错误消息：{resp['message']}")
-        none_data = {"data": {"mid": 0,
-                              "name": '',
-                              "face": '',
-                              "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
-                     "code": -3000,
-                     "message": ""}
-        bli_info = User(none_data['data'], none_data['code'], none_data['message'])
-    return bli_info
+        live_none_data = {"data": {"mid": 0,
+                                   "name": '',
+                                   "face": '',
+                                   "live_room": {"liveStatus": 0, "url": "", "title": "", "cover": ""}},
+                          "code": -3000,
+                          "message": ""}
+        bli_live_info = User(live_none_data['data'], live_none_data['code'], live_none_data['message'])
+    return bli_live_info
+
 
 if __name__ == '__main__':
     res = asyncio.run(bli_live_status(53456))
