@@ -40,6 +40,10 @@
 
    ![weather](/img/hw_greeting.jpg)
 
+5. 哔哩哔哩动态推送（支持文字类动态、图片类动态、转发类动态、视频类动态），其中视频类动态效果如下
+
+   ![bili_dynamic](/img/bili_dynamic.jpg)
+
 ## ToDo List
 
 - [x] [关键句](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/DictReply)，[关键词消息回复](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/KeyReply)
@@ -47,7 +51,7 @@
 - [x] [哔哩哔哩直播推送](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/BiliPush)
 - [x] [成为复读机（完善中）](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/Repeater)
 - [x] [每天问好功能（完善中）](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/Greeting)
-- [ ] 哔哩哔哩动态推送
+- [x] [哔哩哔哩动态推送](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/BiliPush)
 - [ ] CVE 更新推送
 - [ ] 自主从聊天中学习
 - [ ] 统治人类（bushi
