@@ -139,7 +139,7 @@ async def bili_dynamic_push():
 
         msgs = []
 
-        # 把提取动态，构造消息
+        # 把动态提取，构造消息
         for dynamic_info in dynamic_to_push:
             # 转发的动态类型
             if dynamic_info.dynamic_type == 1:
@@ -180,7 +180,7 @@ async def bili_dynamic_push():
                     msg += MessageSegment.text("\n" + orig_dynamic.get_short_dynamic_content(
                         plugin_config.bili_orig_dynamic_length))
                     msg += MessageSegment.text("\n" + dynamic_info.get_dynamic_link())
-                # 原动态发布视频的动态类型
+                # 原动态为发布视频的动态类型
                 elif orig_dynamic.dynamic_type == 8:
                     msg: Message = MessageSegment.text("阿婆主：" + dynamic_info.get_up_name() + "于") \
                                    + MessageSegment.text(dynamic_info.get_post_time() + "转发了") \

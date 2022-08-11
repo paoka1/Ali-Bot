@@ -13,7 +13,7 @@ class Config(BaseSettings):
     bili_live_inform_group = {}
 
     # 数据库路径
-    db_path = "/home/xiaoha/mybot/bot.db"
+    db_path = ""
 
     # 请求直播动态整体间隔时间
     bili_dynamic_time_all = 90
