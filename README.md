@@ -10,9 +10,10 @@
 
 2. 如果你想配置一个阿狸：
 
-   1. 安装`requirements.txt`，配置`.env.dev`
-   2. 按照每个插件或工具下的`README.md`进行配置
-   3. 安装`go-cqhttp`并进行配置
+   1. 安装`requirements.txt`（Python 3.9.5），配置`.env.dev`
+   2. 安装 SQLite3
+   3. 按照每个插件或工具下的`README.md`进行配置
+   4. 安装`go-cqhttp`并进行配置
 
    或者根据下面的教程从头开始创建一个 Bot，直接复制阿狸的插件或工具并进行配置
 

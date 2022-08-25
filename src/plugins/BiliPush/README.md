@@ -30,7 +30,7 @@
 
    安装完后需要进行配置：可以参考官方的 [配置方法指南](https://v2.nonebot.dev/docs/advanced/scheduler)
 
-2. 安装 sqlite3
+2. 安装 SQLite3
 
    安装方法取决于你使用的系统，请自行搜索安装教程并安装
 
