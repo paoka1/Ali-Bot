@@ -4,7 +4,7 @@
 # History:
 #	2022/07/24	paoka1	Third release
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin/:/usr/local/bin:/usr/local/sbin:~/bin
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
 # # # # # # # # # # # # # # #
