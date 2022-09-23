@@ -158,27 +158,29 @@
 
 1. 哔哩哔哩直播推送
 
-   在关注的 up 数量较多时，定时插件可能会有如下的一个警告，这可能会影响直播推送的准时性
+   1. 在关注的 up 数量较多时，定时插件可能会有如下的一个警告，这可能会影响直播推送的准时性
 
-   ```txt
-   Execution of job "bili_live_push (trigger: interval[0:00:40], next run at: 2022-05-03 11:08:31 CST)" skipped: maximum number of running instances reached (1)
-   ```
+      ```txt
+      Execution of job "bili_live_push (trigger: interval[0:00:40], next run at: 2022-05-03 11:08:31 CST)" skipped: maximum number of running instances reached (1)
+      ```
 
-   这时可以通过增加整体的请求间隔（`bili_live_time_all`），或者减小单个请求间隔（`bili_live_time_get`）来解决
+      这时可以通过增加整体的请求间隔（`bili_live_time_all`），或者减小单个请求间隔（`bili_live_time_get`）来解决
+
+   2. 如果出现请求错误（`解析时出错，这可能是因为 API 返回数据不正确而导致的，错误代码：xxx，错误消息：xxx`），请先尝试增大请求间隔（`bili_live_time_all`、`bili_live_time_get`）来尝试解决
 
 2. 哔哩哔哩动态推送
 
-   1. 定时插件的警告
+   1. 定时插件的警告：这一点同于哔哩哔哩直播推送的定时插件的警告， 解决方法相同
 
-      这一点同于哔哩哔哩直播推送的定时插件的警告， 解决方法相同
+   2. 如果出现请求错误（`解析时出错，这可能是因为 API 返回数据不正确而导致的，错误代码：xxx，错误消息：xxx`），请先尝试增大请求间隔（`bili_dynamic_time_all`、`bili_dynamic_time_get`）来尝试解决
 
-   2. 如果连续发表多个动态，阿狸会从旧到新将这些动态依次推送（前提是 Bot 在运行）
+   3. 如果连续发表多个动态，阿狸会从旧到新将这些动态依次推送（前提是 Bot 在运行）
 
-   3. 阿狸只会推送运行时更新的动态，也就是说在停止、启动 Bot 间更新的动态插件并不会进行推送
+   4. 阿狸只会推送运行时更新的动态，也就是说在停止、启动 Bot 间更新的动态插件并不会进行推送
 
-   4. 在某些情况下动态不会被推送，例如在删除旧动态后立即发表了新动态，或者短时间发表了大量的动态，等等等
-   
-   5. 插件目前只支持四种动态类型（文字类动态、图片类动态、转发类动态、视频类动态），[其他动态类型](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/dynamic/get_dynamic_detail.md) 暂不支持，但仍然会推送这些动态，只不过动态内容一律变为`「不支持的动态类型」请点击链接查看`
+   5. 在某些情况下动态不会被推送，例如在删除旧动态后立即发表了新动态，或者短时间发表了大量的动态，等等等
+
+   6. 插件目前只支持四种动态类型（文字类动态、图片类动态、转发类动态、视频类动态），[其他动态类型](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/dynamic/get_dynamic_detail.md) 暂不支持，但仍然会推送这些动态，只不过动态内容一律变为`「不支持的动态类型」请点击链接查看`
 
 ### 5.ToDo List
 
