@@ -22,7 +22,12 @@ driver.register_adapter(ONEBOT_V11Adapter)
 
 
 nonebot.load_from_toml("pyproject.toml")
-nonebot.load_plugins("bot/plugins")
+nonebot.load_plugin("bot/plugins/DictReply")
+nonebot.load_plugin("bot/plugins/Greeting")
+nonebot.load_plugin("bot/plugins/KeyReply")
+nonebot.load_plugin("bot/plugins/Repeater")
+nonebot.load_plugin("bot/plugins/SendImage")
+nonebot.load_plugin("bot/plugins/BiliPush")
 nonebot.init(apscheduler_autostart=True)
 nonebot.init(apscheduler_config={
     "apscheduler.timezone": "Asia/Shanghai"

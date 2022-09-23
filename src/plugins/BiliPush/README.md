@@ -49,9 +49,9 @@
 
       ```python
       # 请求直播状态整体间隔时间
-      bili_live_time_all = 40
+      bili_live_time_all = 60
       # 请求直播状态单次间隔时间
-      bili_live_time_get = 1
+      bili_live_time_get = 3
       ```
 
    3. 改变`config.py`中以下代码中的数值可改变单次推送间隔（可选）
@@ -92,10 +92,10 @@
    3. 改变`config.py`中以下的代码中的数值可改变向哔哩哔哩服务器请求间隔（可选）
 
       ```python
-      # 请求直播动态整体间隔时间
-      bili_dynamic_time_all = 90
+      # 请求动态状态整体间隔时间
+      bili_dynamic_time_all = 100
       # 请求动态状态单次间隔时间
-      bili_dynamic_time_get = 2
+      bili_dynamic_time_get = 5
       ```
 
    4. 改变`config.py`中以下代码中的数值可改变单次推送间隔（可选）

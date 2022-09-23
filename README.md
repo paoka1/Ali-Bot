@@ -23,7 +23,21 @@
 
    1. Linux 下部署：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
 
-4. Ali 正处于开发阶段，其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
+4. 如果有不想使用的插件请在`bot.py`里注释掉对应的加载语句
+
+   如不想加载 DictReply 插件，请把：
+
+   ```python
+   nonebot.load_plugin("bot/plugins/DictReply")
+   ```
+
+   更改为：
+
+   ```python
+   # nonebot.load_plugin("bot/plugins/DictReply")
+   ```
+
+5. Ali 正处于开发阶段，其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
 
    [官方插件商店](https://v2.nonebot.dev/store)、[Pallas Bot](https://github.com/InvoluteHell/Pallas-Bot)、[真寻 Bot](https://github.com/HibiKier/zhenxun_bot)
 

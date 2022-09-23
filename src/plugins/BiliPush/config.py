@@ -3,9 +3,9 @@ from pydantic import BaseSettings
 
 class Config(BaseSettings):
     # 请求直播状态整体间隔时间
-    bili_live_time_all = 40
+    bili_live_time_all = 60
     # 请求直播状态单次间隔时间
-    bili_live_time_get = 1
+    bili_live_time_get = 3
     # 发送消息后的间隔时间
     bili_live_time_send = 1
 
@@ -15,10 +15,10 @@ class Config(BaseSettings):
     # 数据库路径
     db_path = ""
 
-    # 请求直播动态整体间隔时间
-    bili_dynamic_time_all = 90
+    # 请求动态状态整体间隔时间
+    bili_dynamic_time_all = 100
     # 请求动态状态单次间隔时间
-    bili_dynamic_time_get = 2
+    bili_dynamic_time_get = 5
     # 初始化数据库时请求动态状态单次间隔时间
     bili_dynamic_time_init_get = 1
     # 发送消息后的间隔时间
