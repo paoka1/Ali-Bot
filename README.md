@@ -23,19 +23,7 @@
 
    1. Linux 下部署：[Linux 端部署 nonebot2](https://blog.csdn.net/realttr/article/details/122238677)
 
-4. 如果有不想使用的插件请在`bot.py`里注释掉对应的加载语句
-
-   如不想加载 DictReply 插件，请把：
-
-   ```python
-   nonebot.load_plugin("bot/plugins/DictReply")
-   ```
-
-   更改为：
-
-   ```python
-   # nonebot.load_plugin("bot/plugins/DictReply")
-   ```
+4. 如果有不想使用的插件请在`src\plugins`删除对应插件文件夹
 
 5. Ali 正处于开发阶段，其插件有很多不完善的地方，如果想使用更优秀的插件，可以参考：
 
