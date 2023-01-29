@@ -2,6 +2,8 @@
 
 阿狸（Ali）是一个正在成长的 QQ Bot
 
+**本项目已停止维护**
+
 ## 如何使用：
 
 1. 如果你想使用阿狸的插件或工具：
@@ -55,9 +57,9 @@
 - [x] [成为复读机（完善中）](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/Repeater)
 - [x] [每天问好功能（完善中）](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/Greeting)
 - [x] [哔哩哔哩动态推送](https://github.com/paoka1/Ali-Bot/tree/main/src/plugins/BiliPush)
-- [ ] CVE 更新推送
-- [ ] 自主从聊天中学习
-- [ ] 统治人类（bushi
+- [ ] ~~CVE 更新推送~~
+- [ ] ~~自主从聊天中学习~~
+- [ ] ~~统治人类（bushi~~
 
 ## 官方文档链接
 
